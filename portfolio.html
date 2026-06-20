@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Srinivas Gudupu - Data Analyst Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1428 100%);
+            color: #e0e6ff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Starfield Background */
+        .starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .nebula-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #7c3aed, transparent);
+            top: 10%;
+            left: 10%;
+        }
+
+        .nebula-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #00d9ff, transparent);
+            bottom: 10%;
+            right: 10%;
+        }
+
+        /* Main Content */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header/Nav */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 80px;
+            padding: 20px;
+            background: rgba(10, 14, 39, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 10px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00d9ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav a {
+            color: #e0e6ff;
+            text-decoration: none;
+            margin: 0 20px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #00d9ff;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 100px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #00f5ff, #00d9ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 217, 255, 0.3);
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #a0aeff;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #00d9ff, #7c3aed);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(0, 217, 255, 0.5);
+        }
+
+        /* About Section */
+        .section {
+            margin-bottom: 80px;
+            padding: 40px;
+            background: rgba(26, 31, 58, 0.4);
+            border: 1px solid rgba(0, 217, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .section h2 {
+            font-size: 40px;
+            margin-bottom: 30px;
+            color: #00f5ff;
+            border-left: 4px solid #7c3aed;
+            padding-left: 15px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: #c0c6ff;
+        }
+
+        .stat-card {
+            padding: 20px;
+            background: rgba(0, 217, 255, 0.05);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .stat-card .number {
+            font-size: 32px;
+            color: #00d9ff;
+            font-weight: bold;
+        }
+
+        .stat-card .label {
+            color: #a0aeff;
+            margin-top: 10px;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-card {
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.05), rgba(124, 58, 237, 0.05));
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 10px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .skill-card:hover {
+            border-color: rgba(0, 217, 255, 0.5);
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .skill-card h3 {
+            color: #00d9ff;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .skill-card ul {
+            list-style: none;
+        }
+
+        .skill-card li {
+            padding: 8px 0;
+            color: #c0c6ff;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+        }
+
+        .skill-card li:last-child {
+            border-bottom: none;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(0, 217, 255, 0.05));
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: rgba(0, 217, 255, 0.5);
+            box-shadow: 0 0 30px rgba(124, 58, 237, 0.2);
+            transform: translateY(-10px);
+        }
+
+        .project-card h3 {
+            color: #7c3aed;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .project-card p {
+            color: #c0c6ff;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-tag {
+            padding: 5px 15px;
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 20px;
+            font-size: 12px;
+            color: #00d9ff;
+        }
+
+        /* JARVIS Chatbot */
+        .jarvis-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .jarvis-button {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00d9ff, #7c3aed);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 0 30px rgba(0, 217, 255, 0.5);
+            transition: all 0.3s;
+            color: white;
+        }
+
+        .jarvis-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 40px rgba(0, 217, 255, 0.7);
+        }
+
+        .jarvis-chat {
+            position: absolute;
+            bottom: 100px;
+            right: 0;
+            width: 400px;
+            height: 600px;
+            background: rgba(10, 14, 39, 0.95);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 10px;
+            display: none;
+            flex-direction: column;
+            box-shadow: 0 0 40px rgba(0, 217, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .jarvis-chat.active {
+            display: flex;
+        }
+
+        .jarvis-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(124, 58, 237, 0.1));
+        }
+
+        .jarvis-header h3 {
+            color: #00d9ff;
+            margin-bottom: 5px;
+        }
+
+        .jarvis-header p {
+            color: #a0aeff;
+            font-size: 12px;
+        }
+
+        .jarvis-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            padding: 12px 15px;
+            border-radius: 8px;
+            max-width: 90%;
+            word-wrap: break-word;
+            line-height: 1.4;
+        }
+
+        .message.user {
+            background: linear-gradient(135deg, #7c3aed, #00d9ff);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+        }
+
+        .message.bot {
+            background: rgba(0, 217, 255, 0.1);
+            color: #e0e6ff;
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+        }
+
+        .jarvis-input {
+            padding: 15px;
+            border-top: 1px solid rgba(0, 217, 255, 0.2);
+            display: flex;
+            gap: 10px;
+        }
+
+        .jarvis-input input {
+            flex: 1;
+            padding: 10px 15px;
+            background: rgba(0, 217, 255, 0.05);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 5px;
+            color: #e0e6ff;
+            font-size: 14px;
+        }
+
+        .jarvis-input input:focus {
+            outline: none;
+            border-color: rgba(0, 217, 255, 0.5);
+            box-shadow: 0 0 10px rgba(0, 217, 255, 0.2);
+        }
+
+        .jarvis-input button {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #00d9ff, #7c3aed);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .jarvis-input button:hover {
+            box-shadow: 0 0 15px rgba(0, 217, 255, 0.5);
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #00d9ff;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% { opacity: 0.3; }
+            30% { opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .jarvis-chat {
+                width: 90vw;
+                height: 500px;
+            }
+
+            nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Starfield Background -->
+    <div class="starfield" id="starfield"></div>
+    <div class="nebula nebula-1"></div>
+    <div class="nebula nebula-2"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo">SG</div>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Srinivas Gudupu</h1>
+            <p>Data Analyst | SQL | Python | Tableau | Power BI</p>
+            <p style="font-size: 16px; color: #a0aeff; margin-top: 20px;">Transforming Complex Data into Actionable Insights</p>
+            <button class="cta-button" onclick="document.getElementById('jarvis-btn').click()">Chat with JARVIS</button>
+        </section>
+
+        <!-- About Section -->
+        <section class="section" id="about">
+            <h2>About Me</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>I'm a results-driven Data Analyst with proven expertise in transforming complex datasets into actionable business insights. With a strong foundation in SQL, Python, and business intelligence tools, I deliver impactful analytics solutions that drive real-world business value.</p>
+                    <p>Currently pursuing B.Tech in Computer Science & Engineering (AI & ML) at Malla Reddy University, I combine academic knowledge with hands-on experience in ETL processes, statistical analysis, and data visualization.</p>
+                </div>
+                <div>
+                    <div class="stat-card">
+                        <div class="number">5+</div>
+                        <div class="label">Analytics Projects</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">3</div>
+                        <div class="label">Certifications</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">50%</div>
+                        <div class="label">Data Prep Time Reduced</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="section" id="skills">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>📊 Languages & Programming</h3>
+                    <ul>
+                        <li>Python</li>
+                        <li>SQL</li>
+                        <li>JavaScript</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>📈 Data Visualization</h3>
+                    <ul>
+                        <li>Tableau</li>
+                        <li>Power BI</li>
+                        <li>Excel (Advanced)</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>🗄️ Databases</h3>
+                    <ul>
+                        <li>MySQL</li>
+                        <li>SQL Server</li>
+                        <li>PostgreSQL</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>🔬 Data Analysis</h3>
+                    <ul>
+                        <li>Pandas & NumPy</li>
+                        <li>EDA</li>
+                        <li>Data Cleaning</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>📊 Statistical Analysis</h3>
+                    <ul>
+                        <li>Hypothesis Testing</li>
+                        <li>Regression Analysis</li>
+                        <li>Correlation Analysis</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>🚀 Emerging Tech</h3>
+                    <ul>
+                        <li>ML Fundamentals</li>
+                        <li>Prompt Engineering</li>
+                        <li>Generative AI</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="section" id="projects">
+            <h2>Key Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>🤖 Intelligent CSV & SQL Analytics Platform</h3>
+                    <p>Engineered a natural-language analytics platform enabling users to query datasets and generate insights automatically.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">Pandas</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>🚗 Real-Time Traffic Analytics</h3>
+                    <p>Developed YOLO-based analytics solution for real-time traffic monitoring and performance analysis with high-volume data streaming.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">YOLO</span>
+                        <span class="tech-tag">Data Pipeline</span>
+                        <span class="tech-tag">Analytics</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>💬 NLP Chatbot Analytics System</h3>
+                    <p>Designed comprehensive analytics framework for chatbot interactions with SQL-based tracking of user engagement and response accuracy.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">NLP</span>
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">Analytics</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section" id="contact">
+            <h2>Get In Touch</h2>
+            <p style="margin-bottom: 30px;">Have questions about my work? Feel free to reach out or chat with JARVIS!</p>
+            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                <a href="mailto:srinivasgudupu0@gmail.com" class="cta-button">Email Me</a>
+                <a href="https://linkedin.com" class="cta-button">LinkedIn</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- JARVIS Chatbot -->
+    <div class="jarvis-container">
+        <button class="jarvis-button" id="jarvis-btn" onclick="toggleChat()">J</button>
+        <div class="jarvis-chat" id="jarvis-chat">
+            <div class="jarvis-header">
+                <h3>JARVIS</h3>
+                <p>Personal AI Assistant - Ask me anything about Srinivas</p>
+            </div>
+            <div class="jarvis-messages" id="jarvis-messages">
+                <div class="message bot">
+                    Hello! I'm JARVIS, Srinivas's personal assistant. Ask me anything about his skills, projects, or experience!
+                </div>
+            </div>
+            <div class="jarvis-input">
+                <input type="text" id="jarvis-input" placeholder="Type your question..." onkeypress="handleKeyPress(event)">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Generate starfield
+        function generateStars() {
+            const starfield = document.getElementById('starfield');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = Math.random() * 3 + 'px';
+                star.style.height = star.style.width;
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starfield.appendChild(star);
+            }
+        }
+
+        generateStars();
+
+        // Toggle JARVIS chat
+        function toggleChat() {
+            const chat = document.getElementById('jarvis-chat');
+            chat.classList.toggle('active');
+        }
+
+        // Send message
+        function sendMessage() {
+            const input = document.getElementById('jarvis-input');
+            const message = input.value.trim();
+            
+            if (!message) return;
+
+            // Add user message
+            addMessage(message, 'user');
+            input.value = '';
+
+            // Show typing indicator
+            const messagesDiv = document.getElementById('jarvis-messages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message bot';
+            typingDiv.innerHTML = '<div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
+            messagesDiv.appendChild(typingDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+            // Simulate API call with intelligent responses
+            setTimeout(() => {
+                typingDiv.remove();
+                const response = getIntelligentResponse(message);
+                addMessage(response, 'bot');
+            }, 1000);
+        }
+
+        function addMessage(text, sender) {
+            const messagesDiv = document.getElementById('jarvis-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            messageDiv.textContent = text;
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function getIntelligentResponse(question) {
+            const q = question.toLowerCase();
+
+            // Skills questions
+            if (q.includes('skill') || q.includes('expertise') || q.includes('technology')) {
+                return "Srinivas excels in SQL, Python, Tableau, and Power BI. He's also proficient in data cleaning, statistical analysis, and emerging technologies like Generative AI and prompt engineering.";
+            }
+
+            // Experience/Projects
+            if (q.includes('project') || q.includes('experience') || q.includes('work')) {
+                return "He has led 3 major projects: an Intelligent CSV & SQL Analytics Platform, Real-Time Traffic Analytics using YOLO, and an NLP Chatbot Analytics System. He's also optimized data pipelines, reducing preparation time by 40%!";
+            }
+
+            // Education
+            if (q.includes('education') || q.includes('study') || q.includes('degree')) {
+                return "Srinivas is pursuing a B.Tech in Computer Science & Engineering (AI & ML) at Malla Reddy University, with a CGPA of 8.2/10. He's also certified in Data Analytics, Azure ML, and Prompt Engineering.";
+            }
+
+            // Contact
+            if (q.includes('contact') || q.includes('email') || q.includes('linkedin')) {
+                return "You can reach Srinivas at srinivasgudupu0@gmail.com or through his LinkedIn profile. He's based in Hyderabad, Telangana.";
+            }
+
+            // Location
+            if (q.includes('location') || q.includes('where')) {
+                return "Srinivas is based in Hyderabad, Telangana, India. He's open to remote opportunities!";
+            }
+
+            // Achievements
+            if (q.includes('award') || q.includes('achievement') || q.includes('winner')) {
+                return "He was the winner of INTELLITHON 2K24 - an innovation competition recognizing analytical excellence, and was a finalist at IEEE AI Expo for his analytics and AI innovations.";
+            }
+
+            // Personal introduction
+            if (q.includes('who') || q.includes('introduce') || q.includes('tell me about')) {
+                return "Srinivas Gudupu is a results-driven Data Analyst with expertise in SQL, Python, Tableau, and Power BI. He transforms complex data into actionable insights and has delivered impactful analytics solutions for real-world business challenges.";
+            }
+
+            // Tools and languages
+            if (q.includes('tool') || q.includes('language') || q.includes('platform')) {
+                return "His toolkit includes: Python & SQL for programming, Tableau & Power BI for visualization, MySQL/PostgreSQL for databases, and Google Analytics for web analytics. He also uses Git for version control.";
+            }
+
+            // Default response
+            return "That's a great question! Srinivas is a data analyst specialized in transforming complex datasets into actionable insights. Feel free to ask about his skills, projects, education, or how to reach him!";
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+    </script>
+</body>
+</html>
